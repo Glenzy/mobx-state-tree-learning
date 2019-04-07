@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should add a new item and update price 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "image": "",
+      "name": "The Chronicals Of Narnia - CS Lewis Box Set",
+      "price": 19.99,
+    },
+    Object {
+      "image": "",
+      "name": "The Game Of Thrones Ninja Edition",
+      "price": 22,
+    },
+  ],
+}
+`;
+
+exports[`should add a new item and update price 2`] = `
+Array [
+  Object {
+    "items": Array [
+      Object {
+        "image": "",
+        "name": "The Chronicals Of Narnia - CS Lewis Box Set",
+        "price": 19.99,
+      },
+      Object {
+        "image": "",
+        "name": "The Game Of Thrones Ninja Edition",
+        "price": 21.99,
+      },
+    ],
+  },
+  Object {
+    "items": Array [
+      Object {
+        "image": "",
+        "name": "The Chronicals Of Narnia - CS Lewis Box Set",
+        "price": 19.99,
+      },
+      Object {
+        "image": "",
+        "name": "The Game Of Thrones Ninja Edition",
+        "price": 22,
+      },
+    ],
+  },
+]
+`;
+
+exports[`should change the item name 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "image": "",
+      "name": "Moo",
+      "price": 19.99,
+    },
+  ],
+}
+`;
+
+exports[`should change the item price 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "image": "",
+      "name": "The Chronicals Of Narnia - CS Lewis Box Set",
+      "price": 21,
+    },
+  ],
+}
+`;

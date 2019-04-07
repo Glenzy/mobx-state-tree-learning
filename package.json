@@ -9,6 +9,7 @@
     "@types/react-dom": "^16.8.3",
     "mobx": "^5.9.4",
     "mobx-react": "^5.4.3",
+    "mobx-react-lite": "^1.2.0",
     "mobx-state-tree": "^3.12.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -19,7 +20,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --fix . && echo 'Lint complete.'",
+    "watch": "npm run start & npm run test"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -29,5 +32,12 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^1.5.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "prettier": "1.16.4"
+  }
 }

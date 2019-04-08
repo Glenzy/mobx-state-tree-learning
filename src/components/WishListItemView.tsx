@@ -5,17 +5,16 @@ import { IWishListItem } from '../models/wishList';
 import WishListItemEdit from './WishListItemEdit';
 
 const WishListItemView = observer((item: IWishListItem) => {
+
   const editItem = useObservable({
     isEditingItem: false,
     toggleIsEditingItem() {
       console.log('Clicked');
-      return (isEditingItem = !isEditingItem);
+      return (editItem.isEditingItem = !editItem.isEditingItem);
     }
   });
-  //const [isEditingItem, setIsEditingItem] = useState(false);
-  //const editItem = () => setIsEditingItem(!setIsEditingItem);
+
   const itemEditComponent = (item: IWishListItem) => {
-    //return console.log('ItemEdit called', { ...(item as IWishListItem) });
     return <WishListItemEdit {...item as IWishListItem} />;
   };
 
@@ -24,15 +23,15 @@ const WishListItemView = observer((item: IWishListItem) => {
   return isEditingItem === true ? (
     itemEditComponent(item)
   ) : (
-    <li className="item">
-      {item.image && <img src={item.image} />}
-      <div className="textBox">
-        <h3>{item.name}</h3>
-        <span>{item.price}</span>
-        <button onClick={toggleIsEditingItem}>Edit</button>
-      </div>
-    </li>
-  );
+      <li className="item">
+        {item.image && <img src={item.image} />}
+        <div className="textBox">
+          <h3>{item.name}</h3>
+          <span>{item.price}</span>
+          <button onClick={toggleIsEditingItem}>Edit</button>
+        </div>
+      </li>
+    );
 });
 
 export default WishListItemView;

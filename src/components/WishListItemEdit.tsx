@@ -3,6 +3,7 @@ import { IWishListItem } from '../models/wishList';
 import { observer } from 'mobx-react';
 
 const WishListItemEdit = observer((item: IWishListItem) => {
+
   const onChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     item.changeName(event.target.value);
   };
@@ -16,7 +17,7 @@ const WishListItemEdit = observer((item: IWishListItem) => {
 
   return (
     <>
-      {console.log('should be rendered')}
+      {console.log('should be rendered', item)}
       <label htmlFor="name">
         Name:{' '}
         <input

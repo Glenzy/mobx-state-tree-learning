@@ -15,16 +15,18 @@ export const WishListItem = types
     image: ''
   })
   .actions(self => ({
-    changeName: (newName: string) => {
+    changeName(newName: string) {
       self.name = newName;
     },
-    changePrice: (newPrice: number) => {
+    changePrice(newPrice: number) {
       self.price = newPrice;
     },
-    changeImage: (newImage: string) => {
+    changeImage(newImage: string) {
       self.image = newImage;
     }
   }));
+
+
 
 export type IWishListItem = Instance<typeof WishListItem>;
 

@@ -26,9 +26,11 @@ const WishListItemView = observer((item: IWishListItem) => {
   ) : (
     <li className="item">
       {item.image && <img src={item.image} />}
-      <h3>{item.name}</h3>
-      <span>{item.price}</span>
-      <button onClick={toggleIsEditingItem}>Edit</button>
+      <div className="textBox">
+        <h3>{item.name}</h3>
+        <span>{item.price}</span>
+        <button onClick={toggleIsEditingItem}>Edit</button>
+      </div>
     </li>
   );
 });

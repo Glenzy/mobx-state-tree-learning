@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { IWishListItem } from '../models/wishList';
 import { observer } from 'mobx-react';
 
-const WishListItemEdit = observer((item: IWishListItem) => {
-
+const WishListItemEdit = observer((item: any, toggleIsEditingItem) => {
   const onChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    item.changeName(event.target.value);
+    console.log('changeName', item);
+    //item.changeName(event.target.value);
   };
   const onChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
     const price = parseFloat(event.target.value);
@@ -49,6 +49,7 @@ const WishListItemEdit = observer((item: IWishListItem) => {
           value={item.image}
         />
       </label>
+      <button onClick={toggleIsEditingItem}>Cancel</button>
     </>
   );
 });

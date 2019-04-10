@@ -1,28 +1,30 @@
-import React, { useState } from 'react';
-import { observer, useObservable } from 'mobx-react-lite';
+import React, { Component } from 'react';
+import { observer } from 'mobx-react';
+import { clone, getSnapshot, applySnapshot } from 'mobx-state-tree';
 
 import { IWishListItem } from '../models/wishList';
 import WishListItemEdit from './WishListItemEdit';
+import { render } from 'react-dom';
 
-const WishListItemView = observer((item: IWishListItem) => {
+class WishListItemView extends Component<boolean, IWishListItem, {}> {
+  constructor(props: IWishListItem) {
+    super(props);
+    this.state = {
+      isEditingItem: false,
+      item: props
+    };
+  }
 
-  const editItem = useObservable({
-    isEditingItem: false,
-    toggleIsEditingItem() {
-      console.log('Clicked');
-      return (editItem.isEditingItem = !editItem.isEditingItem);
-    }
-  });
+  itemEditComponent = (item: IWishListItem) => (
+    <WishListItemEdit item={...item} toggleIsEditingItem={} />
+  );
 
-  const itemEditComponent = (item: IWishListItem) => {
-    return <WishListItemEdit {...item as IWishListItem} />;
-  };
+  render() {
+    const { isEditingItem, item } = this.state;
 
-  let { isEditingItem, toggleIsEditingItem } = editItem;
-
-  return isEditingItem === true ? (
-    itemEditComponent(item)
-  ) : (
+    return isEditingItem === true ? (
+      this.itemEditComponent(item)
+    ) : (
       <li className="item">
         {item.image && <img src={item.image} />}
         <div className="textBox">
@@ -32,6 +34,7 @@ const WishListItemView = observer((item: IWishListItem) => {
         </div>
       </li>
     );
-});
+  }
+}
 
-export default WishListItemView;
+export default observer(WishListItemView);

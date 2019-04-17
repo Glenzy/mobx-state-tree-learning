@@ -5,10 +5,11 @@ import { observer } from 'mobx-react';
 interface IItemEdit {
   item: IWishListItem;
   toggleIsEditingItem: ReactEventHandler;
+  onSaveEdit: () => void;
 }
 
 const WishListItemEdit: React.FC<IItemEdit> = observer(props => {
-  const { item, toggleIsEditingItem } = props;
+  const { item, toggleIsEditingItem, onSaveEdit } = props;
   const onChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log('changeName', event.target.value);
     item.changeName(event.target.value);
@@ -56,6 +57,7 @@ const WishListItemEdit: React.FC<IItemEdit> = observer(props => {
         />
       </label>
       <button onClick={toggleIsEditingItem}>Cancel</button>
+      <button onClick={onSaveEdit}>Save</button>
     </>
   );
 });

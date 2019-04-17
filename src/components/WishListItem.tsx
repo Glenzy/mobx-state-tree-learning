@@ -4,7 +4,6 @@ import { clone, getSnapshot, applySnapshot } from 'mobx-state-tree';
 
 import { IWishListItem } from '../models/wishList';
 import WishListItemEdit from './WishListItemEdit';
-import { render } from 'react-dom';
 
 interface IItem {
   item: IWishListItem;
@@ -14,14 +13,22 @@ interface IItem {
 class WishListItemView extends Component<IItem> {
   state = {
     isEditingItem: false,
-    item: this.props.item
+    item: clone(this.props.item)
   };
   onEditItem = () => {
     return this.setState({ isEditingItem: !this.state.isEditingItem });
   };
 
+  onSaveEdit = () => {
+    applySnapshot(this.props.item, getSnapshot(this.state.item));
+  };
+
   itemEditComponent: React.FC<IItem> = props => (
-    <WishListItemEdit {...props} toggleIsEditingItem={this.onEditItem} />
+    <WishListItemEdit
+      {...props}
+      toggleIsEditingItem={this.onEditItem}
+      onSaveEdit={this.onSaveEdit}
+    />
   );
 
   render() {

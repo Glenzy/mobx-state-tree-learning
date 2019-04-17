@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { ReactEventHandler } from 'react';
 import { IWishListItem } from '../models/wishList';
 import { observer } from 'mobx-react';
 
-const WishListItemEdit = observer((item: any, toggleIsEditingItem) => {
+interface IItemEdit {
+  item: IWishListItem;
+  toggleIsEditingItem: ReactEventHandler;
+}
+
+const WishListItemEdit: React.FC<IItemEdit> = observer(props => {
+  const { item, toggleIsEditingItem } = props;
   const onChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('changeName', item);
-    //item.changeName(event.target.value);
+    console.log('changeName', event.target.value);
+    item.changeName(event.target.value);
   };
   const onChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
     const price = parseFloat(event.target.value);

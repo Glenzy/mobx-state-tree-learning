@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import WishListView from './components/WishListView';
+import WishListContainer from './components/WishListContainer';
 import logo from './logo.svg';
 import './App.css';
 
@@ -22,13 +22,13 @@ export const wishList = WishList.create({
   ]
 });
 
-class App extends Component {
+class App extends Component<IWishList | {}> {
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <WishListView {...wishList as IWishList} />
+          <WishListContainer {...wishList} />
         </header>
       </div>
     );

@@ -7,16 +7,21 @@ import WishListItemEdit from './WishListItemEdit';
 
 interface IItem {
   item: IWishListItem;
+  clone?: IWishListItem | null;
   isEditingItem?: boolean;
   id: number;
 }
 class WishListItemView extends Component<IItem> {
   state = {
     isEditingItem: false,
-    item: clone(this.props.item)
+    item: this.props.item,
+    clone: null
   };
   onEditItem = () => {
-    return this.setState({ isEditingItem: !this.state.isEditingItem });
+    return this.setState({
+      isEditingItem: !this.state.isEditingItem,
+      clone: clone(this.props.item)
+    });
   };
 
   onSaveEdit = () => {
@@ -32,10 +37,10 @@ class WishListItemView extends Component<IItem> {
   );
 
   render() {
-    const { isEditingItem, item } = this.state;
+    const { isEditingItem, item, clone } = this.state;
 
     return isEditingItem === true ? (
-      this.itemEditComponent({ ...this.state } as IItem)
+      this.itemEditComponent({ clone, isEditingItem } as IItem)
     ) : (
       <li className="item">
         {item.image && <img src={item.image} />}

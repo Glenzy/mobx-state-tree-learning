@@ -3,28 +3,28 @@ import { IWishListItem } from '../models/wishList';
 import { observer } from 'mobx-react';
 
 interface IItemEdit {
-  item: IWishListItem;
+  clone: IWishListItem;
   toggleIsEditingItem: ReactEventHandler;
-  onSaveEdit: () => void;
+  onSaveEdit: ReactEventHandler;
 }
 
 const WishListItemEdit: React.FC<IItemEdit> = observer(props => {
-  const { item, toggleIsEditingItem, onSaveEdit } = props;
+  const { clone, toggleIsEditingItem, onSaveEdit } = props;
   const onChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log('changeName', event.target.value);
-    item.changeName(event.target.value);
+    clone.changeName(event.target.value);
   };
   const onChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
     const price = parseFloat(event.target.value);
-    return isNaN(price) != false ? item.changePrice(price) : false;
+    return isNaN(price) != false ? clone.changePrice(price) : false;
   };
   const onChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    item.changeImage(event.target.value);
+    clone.changeImage(event.target.value);
   };
 
   return (
     <>
-      {console.log('should be rendered', item)}
+      {console.log('should be rendered', clone)}
       <label htmlFor="name">
         Name:{' '}
         <input
@@ -32,7 +32,7 @@ const WishListItemEdit: React.FC<IItemEdit> = observer(props => {
           type="text"
           name="name"
           onChange={onChangeName}
-          value={item.name}
+          value={clone.name}
         />
       </label>
       <label htmlFor="price">
@@ -42,7 +42,7 @@ const WishListItemEdit: React.FC<IItemEdit> = observer(props => {
           type="number"
           name="price"
           onChange={onChangePrice}
-          value={item.price}
+          value={clone.price}
         />
       </label>
       +
@@ -53,7 +53,7 @@ const WishListItemEdit: React.FC<IItemEdit> = observer(props => {
           type="text"
           name="image"
           onChange={onChangeImage}
-          value={item.image}
+          value={clone.image}
         />
       </label>
       <button onClick={toggleIsEditingItem}>Cancel</button>

@@ -8,8 +8,7 @@ interface IItemEdit {
   onSaveEdit: ReactEventHandler;
 }
 
-const WishListItemEdit: React.FC<IItemEdit> = observer(props => {
-  const { clone, toggleIsEditingItem, onSaveEdit } = props;
+const WishListItemEdit: React.FC<IItemEdit> = ({ clone, toggleIsEditingItem, onSaveEdit }: IItemEdit) => {
   const onChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log('changeName', event.target.value);
     clone.changeName(event.target.value);
@@ -60,6 +59,6 @@ const WishListItemEdit: React.FC<IItemEdit> = observer(props => {
       <button onClick={onSaveEdit}>Save</button>
     </>
   );
-});
+};
 
-export default WishListItemEdit;
+export default observer(WishListItemEdit);

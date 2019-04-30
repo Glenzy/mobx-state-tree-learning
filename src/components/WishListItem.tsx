@@ -7,7 +7,7 @@ import WishListItemEdit from './WishListItemEdit';
 
 interface IItem {
   item: IWishListItem;
-  clone?: IWishListItem | null;
+  clone?: IWishListItem;
   isEditingItem?: boolean;
   id: number;
 }
@@ -30,7 +30,7 @@ class WishListItemView extends Component<IItem> {
 
   itemEditComponent: React.FC<IItem> = props => (
     <WishListItemEdit
-      {...props}
+      clone={this.state.clone ? this.state.clone : this.state.item}
       toggleIsEditingItem={this.onEditItem}
       onSaveEdit={this.onSaveEdit}
     />
@@ -42,15 +42,15 @@ class WishListItemView extends Component<IItem> {
     return isEditingItem === true ? (
       this.itemEditComponent({ clone, isEditingItem } as IItem)
     ) : (
-      <li className="item">
-        {item.image && <img src={item.image} />}
-        <div className="textBox">
-          <h3>{item.name}</h3>
-          <span>{item.price}</span>
-          <button onClick={this.onEditItem}>Edit</button>
-        </div>
-      </li>
-    );
+        <li className="item">
+          {item.image && <img src={item.image} />}
+          <div className="textBox">
+            <h3>{item.name}</h3>
+            <span>{item.price}</span>
+            <button onClick={this.onEditItem}>Edit</button>
+          </div>
+        </li>
+      );
   }
 }
 

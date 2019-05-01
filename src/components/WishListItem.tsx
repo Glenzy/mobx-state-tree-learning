@@ -24,7 +24,11 @@ class WishListItemView extends Component<IItem> {
   };
 
   onSaveEdit = () => {
-    applySnapshot(this.props.item, getSnapshot(this.state.item));
+    applySnapshot(this.props.item, getSnapshot(this.state.clone));
+    return this.setState({
+      isEditingItem: !this.state.isEditingItem,
+      clone: null
+    });
   };
 
   itemEditComponent = () => (
@@ -36,7 +40,7 @@ class WishListItemView extends Component<IItem> {
   );
 
   render() {
-    const { isEditingItem, item, clone } = this.state;
+    const { isEditingItem, item } = this.state;
 
     return isEditingItem === true ? (
       this.itemEditComponent()

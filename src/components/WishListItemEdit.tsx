@@ -10,12 +10,12 @@ interface IItemEdit {
 
 const WishListItemEdit: React.FC<IItemEdit> = ({ clone, toggleIsEditingItem, onSaveEdit }: IItemEdit) => {
   const onChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('changeName', event.target.value);
     clone.changeName(event.target.value);
   };
   const onChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
     const price = parseFloat(event.target.value);
-    return isNaN(price) != false ? clone.changePrice(price) : false;
+    console.log('price', price);
+    return isNaN(price) === false ? clone.changePrice(price) : false;
   };
   const onChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     clone.changeImage(event.target.value);

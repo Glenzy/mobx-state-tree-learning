@@ -7,7 +7,6 @@ import WishListItemEdit from './WishListItemEdit';
 
 interface IItem {
   item: IWishListItem;
-  clone?: IWishListItem;
   isEditingItem?: boolean;
   id: number;
 }
@@ -15,7 +14,7 @@ class WishListItemView extends Component<IItem> {
   state = {
     isEditingItem: false,
     item: this.props.item,
-    clone: null
+    clone: clone(this.props.item)
   };
   onEditItem = () => {
     return this.setState({
@@ -28,9 +27,9 @@ class WishListItemView extends Component<IItem> {
     applySnapshot(this.props.item, getSnapshot(this.state.item));
   };
 
-  itemEditComponent: React.FC<IItem> = props => (
-    <WishListItemEdit
-      clone={this.state.clone ? this.state.clone : this.state.item}
+  itemEditComponent = () => (
+    this.state.clone && <WishListItemEdit
+      clone={this.state.clone}
       toggleIsEditingItem={this.onEditItem}
       onSaveEdit={this.onSaveEdit}
     />
@@ -40,7 +39,7 @@ class WishListItemView extends Component<IItem> {
     const { isEditingItem, item, clone } = this.state;
 
     return isEditingItem === true ? (
-      this.itemEditComponent({ clone, isEditingItem } as IItem)
+      this.itemEditComponent()
     ) : (
         <li className="item">
           {item.image && <img src={item.image} />}

@@ -31,7 +31,7 @@ class WishListItemView extends Component<IItem> {
     });
   };
 
-  itemEditComponent = () => (
+  getEditItemComponent = () => (
     this.state.clone && <WishListItemEdit
       clone={this.state.clone}
       toggleIsEditingItem={this.onEditItem}
@@ -39,11 +39,14 @@ class WishListItemView extends Component<IItem> {
     />
   );
 
+  removeItem = () => this.state.item.removeItem();
+
+
   render() {
     const { isEditingItem, item } = this.state;
 
     return isEditingItem === true ? (
-      this.itemEditComponent()
+      this.getEditItemComponent()
     ) : (
         <li className="item">
           {item.image && <img src={item.image} />}
@@ -51,6 +54,7 @@ class WishListItemView extends Component<IItem> {
             <h3>{item.name}</h3>
             <span>{item.price}</span>
             <button onClick={this.onEditItem}>Edit</button>
+            <button onClick={this.removeItem}>Remove</button>
           </div>
         </li>
       );

@@ -23,7 +23,6 @@ const WishListItemEdit: React.FC<IItemEdit> = ({ clone, toggleIsEditingItem, onS
 
   return (
     <>
-      {console.log('should be rendered', clone)}
       <label htmlFor="name">
         Name:{' '}
         <input

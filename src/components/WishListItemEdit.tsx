@@ -3,22 +3,22 @@ import { IWishListItem } from '../models/wishList';
 import { observer } from 'mobx-react';
 
 interface IItemEdit {
-  clone: IWishListItem;
+  item: IWishListItem;
   toggleIsEditingItem: ReactEventHandler;
   onSaveEdit: ReactEventHandler;
 }
 
-const WishListItemEdit: React.FC<IItemEdit> = ({ clone, toggleIsEditingItem, onSaveEdit }: IItemEdit) => {
+const WishListItemEdit: React.FC<IItemEdit> = ({ item, toggleIsEditingItem, onSaveEdit }: IItemEdit) => {
   const onChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    clone.changeName(event.target.value);
+    item.changeName(event.target.value);
   };
   const onChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
     const price = parseFloat(event.target.value);
     console.log('price', price);
-    return isNaN(price) === false ? clone.changePrice(price) : false;
+    return isNaN(price) === false ? item.changePrice(price) : false;
   };
   const onChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    clone.changeImage(event.target.value);
+    item.changeImage(event.target.value);
   };
 
   return (
@@ -30,7 +30,7 @@ const WishListItemEdit: React.FC<IItemEdit> = ({ clone, toggleIsEditingItem, onS
           type="text"
           name="name"
           onChange={onChangeName}
-          value={clone.name}
+          value={item.name}
         />
       </label>
       <label htmlFor="price">
@@ -40,7 +40,7 @@ const WishListItemEdit: React.FC<IItemEdit> = ({ clone, toggleIsEditingItem, onS
           type="number"
           name="price"
           onChange={onChangePrice}
-          value={clone.price}
+          value={item.price}
         />
       </label>
       +
@@ -51,7 +51,7 @@ const WishListItemEdit: React.FC<IItemEdit> = ({ clone, toggleIsEditingItem, onS
           type="text"
           name="image"
           onChange={onChangeImage}
-          value={clone.image}
+          value={item.image}
         />
       </label>
       <button onClick={toggleIsEditingItem}>Cancel</button>

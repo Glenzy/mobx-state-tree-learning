@@ -33,7 +33,7 @@ class WishListItemView extends Component<IItem> {
 
   getEditItemComponent = () => (
     this.state.clone && <WishListItemEdit
-      clone={this.state.clone}
+      item={this.state.clone}
       toggleIsEditingItem={this.onEditItem}
       onSaveEdit={this.onSaveEdit}
     />

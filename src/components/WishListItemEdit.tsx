@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 
 interface IItemEdit {
   item: IWishListItem;
-  toggleIsEditingItem: ReactEventHandler;
+  toggleIsEditingItem?: ReactEventHandler;
   onSaveEdit: ReactEventHandler;
 }
 

@@ -12,7 +12,7 @@ export const WishListItem = types
   .model({
     name: types.string,
     price: types.number,
-    image: ''
+    image: types.maybe(types.string)
   })
   .actions(self => ({
     changeName(newName: string) {

@@ -38,7 +38,7 @@ export const WishList = types
     items: types.optional(types.array(WishListItem), [])
   })
   .actions(self => ({
-    addItem: (item: { name: string; price: number; image?: '' }) => self.items.push(item),
+    addItem: (item: IWishListItem) => self.items.push(item),
     removeItem: (item: IWishListItem) => destroy(item)
 
   }))

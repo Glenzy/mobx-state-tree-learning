@@ -4,12 +4,10 @@ import { IWishListItem, WishListItem } from '../models/wishList';
 import WishListItemEdit from './WishListItemEdit';
 import { wishList } from '../App';
 
-//move to external interface declaration as it's used in multiple areas
-interface IAddItem {
-    item: IWishListItem;
+interface IState {
+    item?: IWishListItem;
 }
-
-class WishListAddItem extends Component<IAddItem>{
+class WishListAddItem extends Component<IState>{
     state = {
         item: WishListItem.create({
             name: '',
@@ -18,7 +16,8 @@ class WishListAddItem extends Component<IAddItem>{
         })
     }
     onAddItem = () => {
-        wishList.addItem(this.state.item as IWishListItem)
+        const { item } = this.state
+        wishList.addItem(item)
         this.setState({
             newItem: WishListItem.create({
                 name: '',
@@ -28,7 +27,7 @@ class WishListAddItem extends Component<IAddItem>{
         })
     }
     render() {
-        const { item } = this.props
+        const { item } = this.state
         return (
             <>
                 <WishListItemEdit item={item} onSaveEdit={this.onAddItem} />

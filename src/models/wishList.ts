@@ -37,11 +37,30 @@ export const WishList = types
   .model({
     items: types.optional(types.array(WishListItem), [])
   })
-  .actions(self => ({
-    addItem: (item: IWishListItem) => self.items.push(item),
-    removeItem: (item: IWishListItem) => destroy(item)
-
-  }))
+  .actions(self => {
+    function addItem(item: IWishListItem) {
+      self.items.push(item);
+      addItemToLocalStorage(item);
+    }
+    function addItemToLocalStorage(item: IWishListItem) {
+      let localStorageItem;
+      //let key: any
+      for (let key in item) {
+        if (item.hasOwnProperty(key)) {
+          localStorageItem = item[key];
+          console.log(typeof (item[key]));
+        }
+      }
+    }
+    function removeItem(item: IWishListItem) {
+      destroy(item);
+    }
+    return {
+      addItem,
+      addItemToLocalStorage,
+      removeItem
+    }
+  })
   .views(self => ({
     get totalPrice() {
       return self.items.reduce((sum: any, entry: any) => sum + entry.price, 0);

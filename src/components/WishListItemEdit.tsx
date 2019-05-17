@@ -14,7 +14,6 @@ const WishListItemEdit: React.FC<IItemEdit> = ({ item, toggleIsEditingItem, onSa
   };
   const onChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
     const price = parseFloat(event.target.value);
-    console.log('price', price);
     return isNaN(price) === false ? item.changePrice(price) : false;
   };
   const onChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {

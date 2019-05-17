@@ -7,7 +7,7 @@ const data = {
   image:
     'https://www.booktopia.com.au/http_coversbooktopiacomau/big/9780007528097/0000/the-chronicles-of-narnia-the-chronicles-of-narnia-boxed-set.jpg'
 };
-
+export interface Dictionary { [key: string]: string }
 export const WishListItem = types
   .model({
     name: types.string,
@@ -40,17 +40,10 @@ export const WishList = types
   .actions(self => {
     function addItem(item: IWishListItem) {
       self.items.push(item);
-      addItemToLocalStorage(item);
+      addItemToLocalStorage();
     }
-    function addItemToLocalStorage(item: IWishListItem) {
-      let localStorageItem;
-      //let key: any
-      for (let key in item) {
-        if (item.hasOwnProperty(key)) {
-          localStorageItem = item[key];
-          console.log(typeof (item[key]));
-        }
-      }
+    function addItemToLocalStorage() {
+      localStorage.setItem('wishlistapp', JSON.stringify(self.items));
     }
     function removeItem(item: IWishListItem) {
       destroy(item);
